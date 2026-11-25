@@ -1,0 +1,20 @@
+[Unit]
+Description=Resize GPU PCIe BARs (Resizable BAR)
+Documentation=file:///usr/local/sbin/gpu-rebar.sh
+ConditionPathExists=/sys/bus/pci/devices
+# Run after kernel modules are loaded, but before the guests (and GPU
+# consumers) start, so the VMs always see the resized BAR.
+After=systemd-modules-load.service
+Before=pve-guests.service pvedaemon.service pveproxy.service nvidia-persistenced.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+TimeoutStartSec=120
+# Optional overrides, e.g. GPU_REBAR_ARGS="-s 8G 0000:3b:00.0 0000:af:00.0"
+EnvironmentFile=-/etc/default/gpu-rebar
+# -r: rebind the original driver (e.g. vfio-pci) after the resize
+ExecStart=/usr/local/sbin/gpu-rebar.sh -r $GPU_REBAR_ARGS
+
+[Install]
+WantedBy=multi-user.target

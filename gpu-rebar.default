@@ -1,0 +1,11 @@
+# /etc/default/gpu-rebar - settings for gpu-rebar.service
+#
+# Arguments passed to gpu-rebar.sh (the -r option is always added by the unit).
+# Leave empty to use the defaults set at the top of gpu-rebar.sh
+# (auto BAR, max size, DEFAULT_DEVICES list).
+#
+# Examples:
+#   GPU_REBAR_ARGS="0000:3b:00.0 0000:af:00.0"
+#   GPU_REBAR_ARGS="-s 8G 0000:3b:00.0 0000:af:00.0"
+#   GPU_REBAR_ARGS="-b 1 -s max 0000:3b:00.0 0000:af:00.0"
+GPU_REBAR_ARGS=""
