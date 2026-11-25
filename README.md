@@ -1,6 +1,10 @@
 # gpu-rebar
 A quick script for resizing BAR to the maximum available for linux and Proxmox via sysfs.
 
+# BIG FAT Warning: 
+The script was built with help of Claude AI. I have read through the code and everything makes sense. 
+It works for me, it might for you too. Still, it may contain bugs!
+
 # Usage:
 gpu-rebar.sh [-b BAR|auto] [-s SIZE|max] [-r] [-n] [DEVICE ...]
 
